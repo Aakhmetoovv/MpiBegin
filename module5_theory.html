@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №5: Теория</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    code, pre {
+      display: block;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 1em;
+      line-height: 1.5em;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №5: Использование виртуальных топологий</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Что такое виртуальная топология?</h2>
+      <p>
+        Виртуальная топология в MPI представляет собой способ организации процессов в удобную для задачи структуру. Она определяет, как процессы логически связаны друг с другом. 
+        Виртуальные топологии могут быть полезны для распределения задач между процессами, которые зависят от их расположения.
+      </p>
+    </section>
+
+    <section>
+      <h2>Типы виртуальных топологий</h2>
+      <ul>
+        <li><strong>Картезианская топология (Cartesian topology):</strong> Процессы организованы в виде многомерной сетки (решетки).</li>
+        <li><strong>Графовая топология (Graph topology):</strong> Процессы связаны произвольными отношениями, определенными пользователем.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Картезианская топология</h2>
+      <p>
+        В MPI картезианская топология создается с помощью функции <code>MPI_Cart_create</code>. Она задает размер сетки, возможность циклического соединения (периодичность) и распределение процессов.
+      </p>
+      <h3>Пример кода:</h3>
+      <pre>
+#include <mpi.h>
+#include <stdio.h>
+
+int main(int argc, char** argv) {
+    MPI_Init(&argc, &argv);
+
+    int dims[2] = {2, 2}; // Размеры сетки: 2x2
+    int periods[2] = {0, 0}; // Нет циклических связей
+    int reorder = 1; // Разрешить перестановку процессов
+    MPI_Comm cart_comm;
+
+    // Создание картезианской топологии
+    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, reorder, &cart_comm);
+
+    int rank, coords[2];
+    MPI_Comm_rank(cart_comm, &rank); // Получение ранга процесса в новой топологии
+    MPI_Cart_coords(cart_comm, rank, 2, coords); // Координаты процесса
+
+    printf("Процесс %d имеет координаты (%d, %d)\n", rank, coords[0], coords[1]);
+
+    MPI_Finalize();
+    return 0;
+}
+      </pre>
+    </section>
+
+    <section>
+      <h2>Графовая топология</h2>
+      <p>
+        В графовой топологии вы определяете связи между процессами вручную. Это делается с помощью функции <code>MPI_Graph_create</code>, где задаются массивы вершин и рёбер графа.
+      </p>
+    </section>
+
+    <section>
+      <h2>Основные функции для работы с топологиями</h2>
+      <ul>
+        <li><code>MPI_Cart_create:</code> Создание картезианской топологии.</li>
+        <li><code>MPI_Cart_coords:</code> Получение координат процесса в топологии.</li>
+        <li><code>MPI_Graph_create:</code> Создание графовой топологии.</li>
+        <li><code>MPI_Graph_neighbors:</code> Получение соседей процесса в графовой топологии.</li>
+      </ul>
+    </section>
+
+    <a href="index.html" class="back-link">Назад на главную</a>
+  </main>
+</body>
+</html>

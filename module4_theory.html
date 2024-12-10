@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №4: Теория</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #6a11cb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    a:hover {
+      background: #2575fc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №4: Коллективные операции и создание новых коммуникаторов</h1>
+  </header>
+  <main>
+    <p>
+      Коллективные операции в MPI (Message Passing Interface) — это методы, которые позволяют всем процессам внутри одного коммуникатора совместно участвовать в передаче данных. 
+      Они значительно упрощают программирование, поскольку обеспечивают синхронизацию и взаимодействие между процессами.
+    </p>
+    <h2>Основные типы коллективных операций:</h2>
+    <ul>
+      <li><strong>Broadcast (MPI_Bcast)</strong>: Рассылка данных от одного процесса (корня) ко всем другим процессам в коммуникаторе.</li>
+      <li><strong>Gather (MPI_Gather, MPI_Allgather)</strong>: Сбор данных от всех процессов в один процесс (или во все процессы).</li>
+      <li><strong>Scatter (MPI_Scatter)</strong>: Разделение данных от одного процесса на части, которые отправляются всем процессам.</li>
+      <li><strong>Reduction (MPI_Reduce, MPI_Allreduce)</strong>: Применение операции (например, сумма или минимум) к данным всех процессов с возвращением результата.</li>
+      <li><strong>Barrier (MPI_Barrier)</strong>: Синхронизация всех процессов, чтобы они ждали завершения других перед продолжением.</li>
+    </ul>
+    <img src="MPI.png" alt="Пример MPI_Bcast" />
+    <h2>Создание новых коммуникаторов:</h2>
+    <p>
+      Иногда программы требуют создания новых групп процессов для решения подзадач. MPI предоставляет механизмы для этого через:
+      <ul>
+        <li><strong>MPI_Comm_split:</strong> Разделяет существующий коммуникатор на несколько меньших на основе заданных критериев.</li>
+        <li><strong>MPI_Comm_create:</strong> Создает новый коммуникатор из подгруппы процессов существующего.</li>
+      </ul>
+    </p>
+    <p>
+      Создание новых коммуникаторов полезно, когда необходимо выделить процессы для выполнения отдельных задач с минимальным взаимодействием между группами.
+    </p>
+    <img src="MPI2.png" alt="Пример MPI_Comm_split" />
+    <a href="index.html">Назад на главную</a>
+  </main>
+</body>
+</html>

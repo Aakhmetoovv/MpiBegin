@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №4: Постановка задачи</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    ol {
+      font-size: 1.2em;
+      margin-left: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #6a11cb;
+      color: #fff;
+    }
+    td {
+      background-color: #f9f9f9;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №4: Постановка задачи</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Цель модуля</h2>
+      <p>
+        Изучить коллективные операции в MPI и способы создания новых коммуникаторов. Решить задачи, включающие использование <code>MPI_Scatter</code>, <code>MPI_Gather</code>, <code>MPI_Bcast</code> и <code>MPI_Comm_split</code>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Формулировка задачи</h2>
+      <p>
+        Разработать программу, которая:
+      </p>
+      <ol>
+        <li>Разделяет массив данных между процессами с помощью <code>MPI_Scatter</code>.</li>
+        <li>Обрабатывает данные на каждом процессе.</li>
+        <li>Собирает обработанные данные обратно с использованием <code>MPI_Gather</code>.</li>
+        <li>Создает подгруппы процессов на основе рангов с помощью <code>MPI_Comm_split</code>.</li>
+        <li>Выводит результаты на главный процесс и отображает информацию о новых группах.</li>
+      </ol>
+
+      <h3> MPIBegin73</h3>
+      <p>
+        В каждом процессе, ранг которого делится на 3 (включая главный процесс), даны три целых числа. С помощью функции 
+        <code>MPI_Comm_split</code> создать новый коммуникатор, включающий процессы, ранг которых делится на 3. Используя одну коллективную операцию 
+        пересылки данных для созданного коммуникатора, переслать исходные числа в главный процесс и вывести эти числа в порядке возрастания рангов переславших их 
+        процессов (включая числа, полученные из главного процесса).
+      </p>
+    </section>
+
+    <section>
+      <h2>Таблица вариантов</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Вариант</th>
+            <th>Коллективная пересылка данных</th>
+            <th>Группы процессов и коммуникаторы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>31, 33, 38, 42, 44, 45</td>
+            <td>72, 74, 77, 78, 82</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>32, 34, 39, 43, 46, 47</td>
+            <td>73, 75, 76, 79, 83</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>35, 37, 40, 41, 48, 49</td>
+            <td>70, 71, 80, 81, 84</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>30, 36, 50, 51, 52, 53</td>
+            <td>85, 86, 87, 88, 89</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <a href="index.html" class="back-link">Назад на главную</a>
+  </main>
+</body>
+</html>

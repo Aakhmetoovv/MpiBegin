@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №5: Постановка задач</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    ol {
+      font-size: 1.2em;
+      margin-left: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #6a11cb;
+      color: #fff;
+    }
+    td {
+      background-color: #f9f9f9;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №5: Постановка задач</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Цель модуля</h2>
+      <p>
+        Изучить использование виртуальных топологий в MPI, включая создание декартовой топологии, графов и гиперкубов. Решить задачи, связанные с этими структурами.
+      </p>
+    </section>
+
+    <section>
+      <h2>Формулировка задачи</h2>
+      <p>
+        Разработать программу, которая:
+      </p>
+      <ol>
+        <li>Создает двумерную декартову топологию с использованием <code>MPI_Cart_create</code>.</li>
+        <li>Генерирует подкоммуникаторы с помощью <code>MPI_Cart_sub</code>.</li>
+        <li>Работает с графами процессов через <code>MPI_Graph_create</code> и <code>MPI_Graph_neighbors</code>.</li>
+        <li>Организует топологию гиперкуба с использованием <code>MPI_Cart_create</code>.</li>
+        <li>Выводит результаты выполнения задач на главный процесс.</li>
+      </ol>
+
+      <h3> MPIBegin87</h3>
+      <p>
+        Число процессов <code>K</code> кратно трем: <code>K = 3N</code>, <code>N > 1</code>. В процессах 0, <code>N</code> и <code>2N</code> дано по <code>N</code> целых чисел.
+        Определить для всех процессов декартову топологию в виде матрицы размера <code>3 × N</code>, после чего, используя функцию <code>MPI_Cart_sub</code>, расщепить матрицу процессов на три одномерные строки 
+        (при этом процессы 0, <code>N</code> и <code>2N</code> будут главными процессами в полученных строках). Используя одну коллективную операцию пересылки данных, переслать по одному исходному числу из главного процесса 
+        каждой строки во все процессы этой же строки и вывести полученное число в каждом процессе (включая процессы 0, <code>N</code> и <code>2N</code>).
+      </p>
+    </section>
+
+    <section>
+      <h2>Таблица вариантов</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Вариант</th>
+            <th>Виртуальные топологии</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>83, 86, 90, 93, 95, 98</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>83, 86, 89, 94, 97, 100</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>84, 86, 90, 93, 97, 100</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>83, 88, 91, 93, 97, 100</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>84, 85, 89, 93, 96, 98</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>83, 85, 90, 93, 95, 98</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>84, 88, 92, 93, 97, 100</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>83, 88, 91, 94, 95, 98</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>84, 85, 92, 94, 96, 98</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>84, 88, 89, 94, 95, 100</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <a href="index.html" class="back-link">Назад на главную</a>
+  </main>
+</body>
+</html>

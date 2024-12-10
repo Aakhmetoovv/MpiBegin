@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №5: Инструкция</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    a {
+      color: #6a11cb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ol {
+      font-size: 1.2em;
+      margin-left: 20px;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №5: Инструкция</h1>
+  </header>
+  <main>
+    <section>
+      <h2>1. Установка необходимых программ</h2>
+      <p>Для работы с виртуальными топологиями MPI необходимо установить следующие инструменты:</p>
+      <ol>
+        <li>Скачайте и установите <strong>MPICH</strong>, используемый для выполнения MPI-программ. Перейдите на официальный сайт MPICH по <a href="https://www.mpich.org/" target="_blank">этой ссылке</a>.</li>
+        <li>Установите три файла: <strong>PT4Mini</strong>, <strong>PTforMPI2</strong>, и <strong>Programming Task Book for MPI</strong>. Ссылки и инструкции по установке см. на скриншотах ниже:</p>
+        <img src="pt4mini_screenshot.png" alt="Скриншот установки PT4Mini">
+        <img src="ptformpi2_screenshot.png" alt="Скриншот установки PTforMPI2">
+        <img src="taskbook_screenshot.png" alt="Скриншот Programming Task Book for MPI">
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Настройка среды разработки</h2>
+      <p>
+        После установки необходимых инструментов выполните следующие шаги для настройки среды разработки:
+      </p>
+      <ol>
+        <li>Откройте <strong>Visual Studio Code</strong> или любой другой текстовый редактор.</li>
+        <li>Добавьте в PATH переменные среды путь к MPICH для работы с MPI-командами.</li>
+        <li>Убедитесь, что вы можете выполнить команду <code>mpicc</code> в терминале для компиляции MPI-программ.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>3. Запуск программы</h2>
+      <p>Для выполнения MPI-программы выполните следующие шаги:</p>
+      <ol>
+        <li>Создайте файл программы с расширением <code>.c</code> или <code>.cpp</code>.</li>
+        <li>Скомпилируйте программу с помощью команды:
+          <pre>mpicc -o program_name program_name.c</pre>
+        </li>
+        <li>Запустите программу с использованием команды:
+          <pre>mpirun -np <number_of_processes> ./program_name</pre>
+          где <code><number_of_processes></code> — количество процессов, которые нужно задействовать.
+        </li>
+      </ol>
+      <img src="zapusk.png" alt="Скриншот запуска программы - шаг 1">
+      <img src="Vibor.png" alt="Скриншот запуска программы - шаг 2">
+      <img src="zapusss.png" alt="Скриншот запуска программы - шаг 3">
+    </section>
+
+    <a href="index.html" class="back-link">Назад на главную</a>
+  </main>
+</body>
+</html>

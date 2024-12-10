@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль №4: Пример</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #6a11cb;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    section pre {
+      display: block;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 1em;
+      line-height: 1.5em;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6a11cb;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Модуль №4: Пример</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Пример программы</h2>
+      <pre>
+#include "pt4.h"
+#include "mpi.h"
+
+void Solve() {
+    Task("MPIBegin73");
+
+    int flag;
+    MPI_Initialized(&flag);
+    if (flag == 0)
+        return;
+
+    int rank, size;
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    MPI_Comm comm;
+    int color = rank % 3 == 0 ? 0 : MPI_UNDEFINED;
+    MPI_Comm_split(MPI_COMM_WORLD, color, rank, &comm);
+
+    if (comm == MPI_COMM_NULL)
+        return;
+
+    int data[3];
+    for (int i = 0; i < 3; ++i)
+        pt >> data[i];
+
+    MPI_Comm_size(comm, &size);
+    int* res = new int[3 * size];
+
+    MPI_Gather(data, 3, MPI_INT, res, 3, MPI_INT, 0, comm);
+
+    if (rank == 0)
+        for (int i = 0; i < 3 * size; ++i)
+            pt << res[i];
+
+    delete[] res;
+}
+      </pre>
+    </section>
+
+    <section>
+      <h2>Результаты выполнения</h2>
+      <p>Скриншот результата выполнения программы:</p>
+      <img src="module4_example_output.png" alt="Результаты выполнения программы">
+    </section>
+
+    <a href="index.html" class="back-link">Назад на главную</a>
+  </main>
+</body>
+</html>
